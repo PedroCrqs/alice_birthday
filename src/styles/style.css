@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+
+* {
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+body {
+  background-image: url(../assets/images/alice_background.jpg);
+  max-width: 100vw;
+  max-height: 100vh;
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
+header {
+  margin-top: 100px;
+}
+
+p {
+  margin-left: 150px;
+}
+
+.info {
+  text-align: center;
+  margin-top: -25px;
+
+  font-size: 20px;
+}
+
+.counter {
+  text-align: center;
+}
+
+.rsvp {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  margin-left: 75px;
+}
+
+.alice {
+  color: rgb(248, 178, 293);
+  font-size: 40px;
+}
+
+.purple {
+  color: rgb(180, 146, 160);
+}
+
+.colorContent {
+  color: rgb(210, 173, 111);
+}
