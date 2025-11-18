@@ -15,3 +15,27 @@ function actualizeCount() {
 const intervalID = setInterval(actualizeCount(), 1000);
 
 document.getElementById("daysLeft").innerText = actualizeCount();
+
+const audioPlayer = document.getElementById("music");
+const musicButton = document.getElementById("musicToggleBtn");
+const iconSpan = musicButton.querySelector("span");
+
+let isPlaying = false;
+
+musicButton.addEventListener("click", () => {
+  if (isPlaying) {
+    audioPlayer.pause();
+    iconSpan.textContent = "🔇";
+  } else {
+    audioPlayer
+      .play()
+      .then(() => {
+        iconSpan.textContent = "🔊";
+      })
+      .catch((error) => {
+        console.error("Erro ao iniciar a música:", error);
+      });
+  }
+
+  isPlaying = !isPlaying;
+});

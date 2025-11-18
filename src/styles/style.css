@@ -30,6 +30,16 @@ p {
   font-size: 20px;
 }
 
+#musicToggleBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
 .counter {
   text-align: center;
 }
@@ -39,6 +49,7 @@ p {
   justify-content: center;
   align-items: end;
   margin-left: 75px;
+  border-color: black;
 }
 
 .alice {
