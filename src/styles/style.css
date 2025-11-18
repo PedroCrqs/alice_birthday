@@ -56,9 +56,13 @@ p {
 }
 
 #confirmation {
+  font-size: 30px;
   border-radius: 20px;
   background-color: black;
   color: rgb(210, 173, 111);
+  display: flex;
+  position: fixed;
+  bottom: 50px;
 }
 
 #confirmation:hover {
