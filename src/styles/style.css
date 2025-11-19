@@ -25,7 +25,7 @@ p {
 
 .specialInvite {
   position: relative;
-  left: -150px;
+  left: -115px;
 }
 
 .displayOff {
@@ -77,7 +77,7 @@ p {
 .guestInputContainer {
   position: fixed;
   bottom: 48%;
-  left: 52%;
+  left: 45%;
 }
 
 #guest {
