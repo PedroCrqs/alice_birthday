@@ -28,6 +28,7 @@ submitButton.addEventListener("click", function () {
   inputContainer.classList.toggle("displayOff");
   inviteContainer.classList.toggle("displayOff");
   document.getElementById("guestCall").innerText = guest;
+  audioPlayer.play();
 });
 
 // Birthday regressive count display
