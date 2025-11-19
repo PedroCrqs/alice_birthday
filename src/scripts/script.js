@@ -1,3 +1,29 @@
+// Music display
+
+const audioPlayer = document.getElementById("music");
+const musicButton = document.getElementById("musicToggleBtn");
+const iconSpan = musicButton.querySelector("span");
+
+let isPlaying = true;
+
+musicButton.addEventListener("click", () => {
+  if (isPlaying) {
+    audioPlayer.pause();
+    iconSpan.textContent = "🔇";
+  } else {
+    audioPlayer
+      .play()
+      .then(() => {
+        iconSpan.textContent = "🔊";
+      })
+      .catch((error) => {
+        console.error("Erro ao iniciar a música:", error);
+      });
+  }
+
+  isPlaying = !isPlaying;
+});
+
 // Guest display
 
 let guest = "";
@@ -28,7 +54,9 @@ submitButton.addEventListener("click", function () {
   inputContainer.classList.toggle("displayOff");
   inviteContainer.classList.toggle("displayOff");
   document.getElementById("guestCall").innerText = guest;
-  audioPlayer.play();
+  audioPlayer.play().then(() => {
+    iconSpan.textContent = "🔊";
+  });
 });
 
 // Birthday regressive count display
@@ -50,29 +78,3 @@ function actualizeCount() {
 const intervalID = setInterval(actualizeCount(), 1000);
 
 document.getElementById("daysLeft").innerText = actualizeCount();
-
-// Music display
-
-const audioPlayer = document.getElementById("music");
-const musicButton = document.getElementById("musicToggleBtn");
-const iconSpan = musicButton.querySelector("span");
-
-let isPlaying = false;
-
-musicButton.addEventListener("click", () => {
-  if (isPlaying) {
-    audioPlayer.pause();
-    iconSpan.textContent = "🔇";
-  } else {
-    audioPlayer
-      .play()
-      .then(() => {
-        iconSpan.textContent = "🔊";
-      })
-      .catch((error) => {
-        console.error("Erro ao iniciar a música:", error);
-      });
-  }
-
-  isPlaying = !isPlaying;
-});
