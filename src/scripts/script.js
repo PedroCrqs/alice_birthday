@@ -41,6 +41,7 @@ const listOfGuests = {
     "Marco Vidal",
     "Beatriz Vidal",
     "Neuza Pereira",
+    "Fabyolla Vidal",
   ],
   "Gustavo Family": ["Gustavo Yssak", "Leticia Yssak", "Denise Yssak"],
   "Erica Family": ["Erica Mattos", "Maria Eduarda Salles"],
