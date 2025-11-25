@@ -31,6 +31,13 @@ let guest = "";
 // Guests database
 
 const listOfGuests = {
+  "Erica family": [
+    "Luisa Pimentel",
+    "Erica Pimentel",
+    "Luan Pimentel",
+    "Cleuza Pimentel",
+    "Adriano",
+  ],
   "Alexandre Family": [
     "Alexandre Cerqueira",
     "Lisiane Moura",
@@ -44,7 +51,7 @@ const listOfGuests = {
     "Fabyolla Vidal",
   ],
   "Gustavo Family": ["Gustavo Yssak", "Leticia Yssak", "Denise Yssak"],
-  "Erica Family": ["Erica Mattos", "Maria Eduarda Salles"],
+  "Erica Family": ["Erica Matos", "Maria Eduarda Salles"],
   "Erick family": [
     "Erick Teixeira",
     "Erika Teixeira",
