@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const FILE_PATH = path.join(__dirname, "confirmados.txt");
+const FILE_PATH = path.join(__dirname, "log.txt");
 
 if (!fs.existsSync(FILE_PATH)) {
   fs.writeFileSync(FILE_PATH, "Lista de Convidados Confirmados:");
