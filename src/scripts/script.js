@@ -42,6 +42,7 @@ const listOfGuests = {
     "Alexandre Cerqueira",
     "Lisiane Moura",
     "Bruna Lia Cerqueira",
+    "Artur",
   ],
   "Andrea Family": [
     "Andrea Cerqueira",
@@ -50,8 +51,15 @@ const listOfGuests = {
     "Neuza Pereira",
     "Fabyolla Vidal",
   ],
-  "Gustavo Family": ["Gustavo Yssak", "Leticia Yssak", "Denise Yssak"],
-  "Erica Family": ["Erica Matos", "Maria Eduarda Salles"],
+  "Gustavo family": [
+    "Gustavo Yssak",
+    "Leticia Yssak",
+    "Lucas",
+    "Lucas Miguel",
+    "Maria",
+  ],
+  "Denise family": ["Denise Yssak", "Ana Licia"],
+  "Erica family": ["Erica Matos", "Maria Eduarda Salles"],
   "Erick family": [
     "Erick Teixeira",
     "Erika Teixeira",
@@ -69,6 +77,25 @@ const listOfGuests = {
     "Regina Caetano",
   ],
   "Alan family": ["Alan Silva", "Erika Silva"],
+  "Saci family": [
+    "Emerson Domingos",
+    "Adriana Santos",
+    "Gabriel Paulino",
+    "Richard Benite",
+    "Daiane Caroline",
+    "Valentina Magalhães",
+  ],
+  "Yuri family": ["Yuri Vidal"],
+  "Rogerio family": ["Rogerio Rodrigues"],
+  "Caue family": ["Caue", "Lara"],
+  "Stephanie family": ["Stephanie Gomes", "Wallacy Sant'anna"],
+  "Elizabete family": ["Elizabete Matos", "Annibal Ramos"],
+  "Chagas family": [
+    "Francisco Chagas",
+    "Benjamin Telles",
+    "Elila Medeiros",
+    "Dafne Telles",
+  ],
 };
 
 // Elements
@@ -179,8 +206,8 @@ const sendBtn = document.getElementById("sendConfirmation");
 
 sendBtn.addEventListener("click", () => {
   const user = window.selectedGuest;
-  // family e mainGuest não são mais necessários no payload final
-
+  familySection.classList.add("displayOff");
+  inviteContainer.classList.remove("displayOff");
   const boxes = document.querySelectorAll("#familyList input[type=checkbox]");
   let confirmed = [user]; // Usa 'let' para permitir a modificação
   boxes.forEach((box) => {
