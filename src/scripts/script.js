@@ -51,29 +51,30 @@ const listOfGuests = {
     "Neuza Pereira",
     "Fabyolla Vidal",
   ],
+  "Marcelo family": ["Marcelo Cerqueira", "Marcelo Santiago*", "Gisele Costa"],
   "Gustavo family": [
-    "Gustavo Yssak",
+    "Gustavo Nunes",
     "Leticia Yssak",
-    "Lucas",
-    "Lucas Miguel",
-    "Maria",
+    "Lucas Bezerra",
+    "Lucas Miguel*",
+    "Maria Yssak",
   ],
-  "Denise family": ["Denise Yssak", "Ana Licia"],
+  "Denise family": ["Denise Lima", "Ana Licia Lima*"],
   "Erica family": ["Erica Matos", "Maria Eduarda Salles"],
   "Erick family": [
     "Erick Teixeira",
     "Erika Teixeira",
-    "Vinicius Teixeira",
+    "Vinícius Teixeira",
     "Adriano",
-    "Gabriel Teixeira",
-    "Ana Paula Teixeira",
+    "Gabriel Teixeira*",
+    "Ana Paula Teixeira*",
     "Giovana Teixeira",
     "Guilherme Teixeira",
   ],
   "Phelippe family": [
     "Phelippe Toledo",
     "Janete Chaves",
-    "Enrico Toledo",
+    "Enrico Toledo*",
     "Regina Caetano",
   ],
   "Alan family": ["Alan Silva", "Erika Silva"],
@@ -81,9 +82,9 @@ const listOfGuests = {
     "Emerson Domingos",
     "Adriana Santos",
     "Gabriel Paulino",
-    "Richard Benite",
+    "Richard Benite*",
     "Daiane Caroline",
-    "Valentina Magalhães",
+    "Valentina Magalhães*",
   ],
   "Yuri family": ["Yuri Vidal"],
   "Rogerio family": ["Rogerio Rodrigues"],
@@ -92,12 +93,30 @@ const listOfGuests = {
   "Elizabete family": ["Elizabete Matos", "Annibal Ramos"],
   "Chagas family": [
     "Francisco Chagas",
-    "Benjamin Telles",
+    "Benjamin Telles*",
     "Elila Medeiros",
     "Dafne Telles",
   ],
+  "Flavio family": ["Flavio Fialho", "Isis Fialho*"],
+  "Gabriela family": ["Gabriela Villas"],
+  "Camile family": ["Camile Santos"],
+  "Paola family": ["Paola Aryadne"],
+  "Daylane family": ["Daylane Campos"],
+  "Tatiana family": ["Tatiana Carolina"],
+  "Simone family": ["Simone Klein", "Natasha Klein*"],
+  "Andreia family": ["Andreia Cristina"],
+  "Thais family": ["Thais Araújo", "Nicoly Araújo*"],
+  "Thais Dias family": ["Thais Dias"],
+  "Elen family": ["Elen Lemos", "Helena Lemos*"],
+  "Aurelio family": [
+    "Aurélio Lessa",
+    "Karina Duarte",
+    "Benedita Pereira",
+    "Elis Duarte*",
+    "Miguel Duarte*",
+    "Arthur Duarte*",
+  ],
 };
-
 // Elements
 
 const inputContainer = document.getElementById("inputContainer");
@@ -119,14 +138,14 @@ const returnButton = document.getElementById("returnButton");
 // Guest name filter
 
 submitButton.addEventListener("click", () => {
-  const typedName = guestInput.value.trim().toLowerCase();
+  const typedName = normalizeString(guestInput.value.trim().toLowerCase());
   if (!typedName) return;
 
   const filteredResults = [];
 
   for (const family in listOfGuests) {
     listOfGuests[family].forEach((person) => {
-      if (person.toLowerCase().includes(typedName)) {
+      if (normalizeString(person).toLowerCase().includes(typedName)) {
         filteredResults.push({ name: person, family: family });
       }
     });
@@ -203,6 +222,7 @@ confirmButton.addEventListener("click", () => {
     inviteContainer.classList.add("displayOff");
     familySection.classList.remove("displayOff");
   } else {
+    alert("Aguarde 10 segundos até que a confirmação seja enviada!");
     const user = window.selectedGuest;
     const boxes = document.querySelectorAll("#familyList input[type=checkbox]");
     let confirmed = [user];
@@ -244,7 +264,8 @@ const sendBtn = document.getElementById("sendConfirmation");
 sendBtn.addEventListener("click", () => {
   const user = window.selectedGuest;
   const boxes = document.querySelectorAll("#familyList input[type=checkbox]");
-  let confirmed = [user]; // Usa 'let' para permitir a modificação
+  let confirmed = [user];
+  alert("Aguarde 10 segundos até que a confirmação seja enviada!"); // Usa 'let' para permitir a modificação
   boxes.forEach((box) => {
     if (box.checked) confirmed.push(box.value);
   });
@@ -290,3 +311,23 @@ setInterval(() => {
   // Use um setTimeout inicial para evitar esperar um segundo para a primeira atualização
   document.getElementById("daysLeft").innerText = actualizeCount();
 }, 1000);
+
+// script.js (Adicione esta função utilitária)
+
+function normalizeString(text) {
+  // 1. Converte para minúsculas.
+  const lowerText = text.toLowerCase();
+
+  // 2. Normaliza e remove acentos (ex: á -> a)
+  const withoutAccents = lowerText
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  // 3. Substitui o 'c' (cedilha) por 'c'. Embora o normalize funcione para 'ç' em muitos browsers,
+  // adicionar o .replace() garante a consistência e remove outros caracteres especiais se necessário.
+
+  // No seu caso, o problema é resolvido com a remoção do .normalize("NFD") e .toLowerCase()
+  // se o problema for APENAS com a comparação do input.
+
+  return withoutAccents;
+}
