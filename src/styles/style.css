@@ -29,7 +29,7 @@ p {
 }
 
 .displayOff {
-  display: none;
+  display: none !important;
 }
 
 .info {

@@ -31,7 +31,7 @@ let guest = "";
 // Guests database
 
 const listOfGuests = {
-  "Erica family": [
+  "Erica Beta family": [
     "Luisa Pimentel",
     "Erica Pimentel",
     "Luan Pimentel",
@@ -111,7 +111,11 @@ const submitButton = document.getElementById("submitButton");
 const guestInput = document.getElementById("guest");
 const guestSelectBox = document.getElementById("guestSelectBox");
 const confirmSelectedNameBtn = document.getElementById("confirmSelectedName");
-
+const familyConfirmation = document.getElementById("familyConfirmation");
+const confirmationSucessfull = document.getElementById(
+  "confirmationSucessfull"
+);
+const returnButton = document.getElementById("returnButton");
 // Guest name filter
 
 submitButton.addEventListener("click", () => {
@@ -147,7 +151,6 @@ submitButton.addEventListener("click", () => {
 
 confirmSelectedNameBtn.addEventListener("click", () => {
   const selectedData = JSON.parse(guestSelectBox.value);
-
   const userName = selectedData.name; // Já é a string do nome completo!
   // const userNameDisplay = userName.split(" "); // Não precisamos disso se usarmos a string completa.
   const userFamily = selectedData.family;
@@ -171,33 +174,67 @@ const confirmButton = document.getElementById("confirmation");
 
 confirmButton.addEventListener("click", () => {
   const familyListDiv = document.getElementById("familyList");
-
   const family = window.selectedFamily;
-  const mainGuest = window.selectedGuest; // Pega o nome do convidado principal
+  const mainGuest = window.selectedGuest;
+  const familyMembers = listOfGuests[family];
+  console.log(familyMembers);
 
-  // Filtra a lista completa de convidados da família
-  const familyMembers = listOfGuests[family].filter(
-    (person) => person !== mainGuest // Remove o convidado principal da lista
-  );
+  if (familyMembers.length > 1) {
+    familyWithNoGuest = familyMembers.filter(
+      (person) => person !== mainGuest // Remove o convidado principal da lista
+    );
 
-  inviteContainer.classList.add("displayOff");
-  familyListDiv.innerHTML = "";
+    inviteContainer.classList.add("displayOff");
+    familyListDiv.innerHTML = "";
 
-  // Itera apenas sobre os membros restantes da família
-  familyMembers.forEach((person) => {
-    const id = `fam_${person.replace(/\s+/g, "_")}`;
+    // Itera apenas sobre os membros restantes da família
+    familyWithNoGuest.forEach((person) => {
+      const id = `fam_${person.replace(/\s+/g, "_")}`;
 
-    const box = `
+      const box = `
       <label>
         <input type="checkbox" value="${person}" id="${id}">
         ${person}
       </label><br>
     `;
 
-    familyListDiv.insertAdjacentHTML("beforeend", box);
-  });
+      familyListDiv.insertAdjacentHTML("beforeend", box);
+    });
+    inviteContainer.classList.add("displayOff");
+    familySection.classList.remove("displayOff");
+  } else {
+    const user = window.selectedGuest;
+    const boxes = document.querySelectorAll("#familyList input[type=checkbox]");
+    let confirmed = [user];
+    boxes.forEach((box) => {
+      if (box.checked) confirmed.push(box.value);
+    });
+    const payload = {
+      // Payload Simplificado:
+      ListaConfirmados: confirmed.join(", "), // Converte o array ordenado para uma string
+      Timestamp: new Date().toISOString(),
+    };
 
-  familySection.classList.remove("displayOff");
+    // ATENÇÃO: SUBSTITUA PELA URL PÚBLICA DO SEU SERVIÇO NO RENDER
+    fetch("https://alice-birthday.onrender.com/confirm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((r) => r.text())
+      .then((msg) => {
+        alert("Confirmação enviada!");
+        inviteContainer.classList.add("displayOff");
+        confirmationSucessfull.classList.remove("displayOff");
+      })
+      .catch((err) => alert("Erro ao enviar confirmação"));
+  }
+});
+
+returnButton.addEventListener("click", () => {
+  inviteContainer.classList.remove("displayOff");
+  confirmationSucessfull.classList.add("displayOff");
+  confirmButton.classList.add("displayOff");
 });
 
 // script.js (NOVO TRECHO para o sendBtn)
@@ -206,8 +243,6 @@ const sendBtn = document.getElementById("sendConfirmation");
 
 sendBtn.addEventListener("click", () => {
   const user = window.selectedGuest;
-  familySection.classList.add("displayOff");
-  inviteContainer.classList.remove("displayOff");
   const boxes = document.querySelectorAll("#familyList input[type=checkbox]");
   let confirmed = [user]; // Usa 'let' para permitir a modificação
   boxes.forEach((box) => {
@@ -230,7 +265,11 @@ sendBtn.addEventListener("click", () => {
     body: JSON.stringify(payload),
   })
     .then((r) => r.text())
-    .then((msg) => alert("Confirmação enviada!"))
+    .then((msg) => {
+      alert("Confirmação enviada!");
+      familySection.classList.add("displayOff");
+      confirmationSucessfull.classList.remove("displayOff");
+    })
     .catch((err) => alert("Erro ao enviar confirmação"));
 });
 
@@ -250,4 +289,4 @@ function actualizeCount() {
 setInterval(() => {
   // Use um setTimeout inicial para evitar esperar um segundo para a primeira atualização
   document.getElementById("daysLeft").innerText = actualizeCount();
-}, 1000); // 1000ms (1 segundo) é muito frequente. Um intervalo de 60000ms (1 minuto) seria suficiente para dias, mas manterei 1000ms para consistência.
+}, 1000);
