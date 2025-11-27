@@ -42,7 +42,6 @@ function showNotification(message, type = "info") {
 function searchGuest() {
   const typedName = normalizeString($guestInput.value.trim());
 
-  // ✅ Validação com feedback
   if (!typedName) {
     showNotification(CONFIG.MESSAGES.EMPTY_INPUT, "warning");
     return;
@@ -100,7 +99,6 @@ function confirmPresence() {
     hide($inviteMainContainer);
     show($familySection);
   } else {
-    // Convidado único
     sendConfirmation([appState.selectedGuest]);
   }
 }
