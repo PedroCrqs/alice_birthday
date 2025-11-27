@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,66 +14,63 @@
   </head>
 
   <body>
-    <section class="guestInputContainer" id="inputContainer">
+    <section class="mainContainer" id="inputContainer">
       <h2 class="specialInvite">
-        Convite <strong class="alice">especial</strong>!!!
+        Convite <strong class="emphasisWord">especial</strong>!!!
       </h2>
-      <label for="guest" class="inputLabel">Digite seu nome para abrir:</label>
+      <label for="guestInput" class="emphasisText"
+        >Digite seu nome para abrir:</label
+      >
       <br />
-      <input type="text" placeholder="Seu nome" id="guest" />
+      <input type="text" placeholder="Seu nome" id="guestInput" />
       <br /><br />
-      <button type="submit" id="submitButton" class="buttonStyle">Abrir</button>
+      <button type="submit" id="guestInputButton" class="buttonStyle">
+        Confirmar
+      </button>
     </section>
 
     <section
-      class="guestSelectYourName guestInputContainer displayOff"
+      class="guestSelectYourName mainContainer displayOff"
       id="guestSelectName"
     >
-      <label for="guestSelectName" class="inputLabel">Confirme seu nome:</label>
+      <label for="guestSelectName" class="emphasisText"
+        >Confirme seu nome:</label
+      >
       <br />
       <select name="Convidados" id="guestSelectBox"></select>
 
       <br /><br />
-      <button id="confirmSelectedName" class="buttonStyle">Confirmar</button>
+      <button id="confirmSelectedName" class="buttonStyle">Abrir</button>
     </section>
 
-    <section
-      class="familyConfirmation displayOff guestInputContainer"
-      id="familyConfirmation"
-    >
-      <h3 class="inputLabel">Confirmar familiares:</h3>
-      <div id="familyList"></div>
-
-      <br />
-      <button id="sendConfirmation" class="buttonStyle">Confirmar</button>
-    </section>
-
-    <main id="inviteContainer" class="invitation displayOff">
+    <main id="inviteMainContainer" class="invitation displayOff">
       <header>
-        <button id="musicToggleBtn" autoplay loop>
+        <button id="musicToggleBtn">
           <span>🎵</span>
         </button>
         <h1>
-          🎉 Olá, <strong class="purple" id="guestCall"></strong>! Você foi
-          convidado e sua presença é muito importante! 🎉
+          🎉 Olá, <strong class="emphasisWord2" id="guestCall"></strong>! Você
+          foi convidado e sua presença é muito importante! 🎉
         </h1>
       </header>
 
       <section class="info">
         <h2>1 aninho da <strong class="alice">Alice</strong>!</h2>
-        <p><strong class="colorContent">14</strong> de dezembro</p>
-        <p><strong class="colorContent">14</strong> horas</p>
+        <p><strong class="emphasisWord3">14</strong> de dezembro</p>
+        <p><strong class="emphasisWord3">14</strong> horas</p>
         <p>
           <strong>Av Teixeira Brandão 2</strong>
         </p>
       </section>
       <br />
       <section class="counter">
-        <p>Faltam <strong id="daysLeft" class="colorContent"></strong> dias!</p>
+        <p>
+          Faltam <strong id="daysLeft" class="emphasisWord3"></strong> dias!
+        </p>
       </section>
 
       <br />
-      <section class="rsvp">
+      <section class="mainConfirmButton">
         <button id="confirmation" class="buttonStyle">
           Confirmar Presença
         </button>
@@ -81,13 +78,27 @@
     </main>
 
     <section
-      class="confirmationSucess displayOff guestInputContainer"
-      id="confirmationSucessfull"
+      class="familyConfirmation displayOff mainContainer"
+      id="familyConfirmation"
     >
-      <h3 class="inputLabel">Sua presença foi confirmada com sucesso!</h3>
+      <h3 class="emphasisText">Confirmar familiares:</h3>
+      <div id="familyList"></div>
+
+      <br />
+      <button id="sendFamilyConfirmation" class="buttonStyle">Confirmar</button>
+    </section>
+
+    <section class="displayOff mainContainer" id="confirmationSucessfull">
+      <h3 class="emphasisText">Sua presença foi confirmada com sucesso!</h3>
       <br />
       <button id="returnButton" class="buttonStyle">Voltar</button>
     </section>
+
+    <footer class="attribution">
+      <p>
+        Coded by <a href="https://github.com/PedroCrqs">Pedro Cerqueira</a>.
+      </p>
+    </footer>
 
     <script type="module" src="src/scripts/main.js"></script>
   </body>

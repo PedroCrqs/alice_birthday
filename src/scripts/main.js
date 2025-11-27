@@ -3,8 +3,8 @@ import {
   $guestCall,
   $inputContainer,
   $guestInput,
-  $submitButton,
-  $inviteContainer,
+  $guestInputButton,
+  $inviteMainContainer,
   $familySection,
   $confirmationSuccessfull,
   $returnButton,
@@ -13,7 +13,7 @@ import {
   $confirmSelectedNameBtn,
   $confirmButton,
   $familyListDiv,
-  $sendBtn,
+  $sendFamilyConfirmation,
 } from "./utils/dom.js";
 import { listOfGuests, RENDER_URL, normalizeString } from "./utils/data.js";
 import { initMusic } from "./modules/music.js";
@@ -88,7 +88,7 @@ function confirmSelectedGuest() {
   $guestCall.innerText = selectedGuest.name.split(" ")[0];
 
   hide($guestSelectContainer);
-  show($inviteContainer);
+  show($inviteMainContainer);
   initMusic();
 }
 
@@ -97,7 +97,7 @@ function confirmPresence() {
 
   if (familyMembers.length > 1) {
     renderFamilySelection(familyMembers);
-    hide($inviteContainer);
+    hide($inviteMainContainer);
     show($familySection);
   } else {
     // Convidado único
@@ -161,7 +161,7 @@ async function sendConfirmation(confirmedGuests) {
     await response.text();
 
     showNotification(CONFIG.MESSAGES.SUCCESS, "success");
-    hide($inviteContainer);
+    hide($inviteMainContainer);
     hide($familySection);
     show($confirmationSuccessfull);
   } catch (error) {
@@ -171,16 +171,16 @@ async function sendConfirmation(confirmedGuests) {
 }
 
 function returnButton() {
-  show($inviteContainer);
+  show($inviteMainContainer);
   hide($confirmationSuccessfull);
   hide($confirmButton);
 }
 
 // Event listeners
-$submitButton.addEventListener("click", searchGuest);
+$guestInputButton.addEventListener("click", searchGuest);
 $confirmSelectedNameBtn.addEventListener("click", confirmSelectedGuest);
 $confirmButton.addEventListener("click", confirmPresence);
-$sendBtn.addEventListener("click", confirmFamilyPresence);
+$sendFamilyConfirmation.addEventListener("click", confirmFamilyPresence);
 $returnButton.addEventListener("click", returnButton);
 
 $guestInput.addEventListener("keypress", (e) => {

@@ -23,13 +23,38 @@ p {
   margin-left: 150px;
 }
 
+.displayOff {
+  display: none !important;
+}
+
+.emphasisText {
+  color: rgb(255, 141, 161);
+  font-size: 30px;
+}
+
+.emphasisWord {
+  color: rgb(248, 178, 293);
+  font-size: 40px;
+}
+
+.emphasisWord2 {
+  color: rgb(180, 146, 160);
+}
+
+.emphasisWord3 {
+  color: rgb(255, 141, 161);
+  font-size: 30px;
+}
+
+.mainContainer {
+  position: fixed;
+  bottom: 48%;
+  left: 45%;
+}
+
 .specialInvite {
   position: relative;
   left: -115px;
-}
-
-.displayOff {
-  display: none !important;
 }
 
 .info {
@@ -39,54 +64,15 @@ p {
   font-size: 20px;
 }
 
-#musicToggleBtn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 20px;
-}
-
 .counter {
   text-align: center;
 }
 
-.rsvp {
+.mainConfirmButton {
   display: flex;
   justify-content: center;
   align-items: end;
   margin-left: 75px;
-}
-
-.alice {
-  color: rgb(248, 178, 293);
-  font-size: 40px;
-}
-
-.purple {
-  color: rgb(180, 146, 160);
-}
-
-.colorContent {
-  color: rgb(255, 141, 161);
-  font-size: 30px;
-}
-
-.guestInputContainer {
-  position: fixed;
-  bottom: 48%;
-  left: 45%;
-}
-
-#guest {
-  width: 150px;
-}
-
-.inputLabel {
-  color: rgb(255, 141, 161);
-  font-size: 30px;
 }
 
 #confirmation {
@@ -105,4 +91,29 @@ p {
 .buttonStyle:hover {
   background-color: rgb(255, 141, 161);
   color: black;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  justify-content: center;
+  font-weight: 300;
+  display: flex;
+  position: fixed;
+  bottom: 10px;
+}
+
+.attribution a {
+  color: hsl(256, 67%, 59%);
+  font-size: 11px;
+}
+
+#musicToggleBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
 }
