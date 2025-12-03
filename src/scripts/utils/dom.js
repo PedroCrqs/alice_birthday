@@ -1,6 +1,7 @@
 export const show = (element) =>
   element && element.classList.remove("displayOff");
 export const hide = (element) => element && element.classList.add("displayOff");
+export const sendingButtonText = '<span class="spinner"></span> Enviando...';
 
 // dom ref
 export const $audioPlayer = document.getElementById("music");

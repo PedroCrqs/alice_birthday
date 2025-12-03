@@ -1,4 +1,4 @@
-import { show, hide } from "./utils/dom.js";
+import { show, hide, sendingButtonText } from "./utils/dom.js";
 import {
   $guestCall,
   $inputContainer,
@@ -93,6 +93,8 @@ function confirmSelectedGuest() {
 
 function confirmPresence() {
   const familyMembers = listOfGuests[appState.selectedFamily];
+  $confirmButton.disabled = true;
+  $confirmButton.innerHTML = sendingButtonText;
 
   if (familyMembers.length > 1) {
     renderFamilySelection(familyMembers);
@@ -129,6 +131,8 @@ function renderFamilySelection(familyMembers) {
 function confirmFamilyPresence() {
   const boxes = document.querySelectorAll("#familyList input[type=checkbox]");
   const confirmed = [appState.selectedGuest];
+  $sendFamilyConfirmation.disabled = true;
+  $sendFamilyConfirmation.innerHTML = sendingButtonText;
 
   boxes.forEach((box) => {
     if (box.checked) confirmed.push(box.value);
@@ -138,6 +142,11 @@ function confirmFamilyPresence() {
 }
 
 async function sendConfirmation(confirmedGuests) {
+  const styleSheet = document.createElement("style");
+  styleSheet.id = "force-wait-cursor";
+  styleSheet.innerHTML = "* { cursor: wait !important; }";
+  document.head.appendChild(styleSheet);
+
   showNotification(CONFIG.MESSAGES.WAIT_CONFIRMATION, "info");
 
   const now = new Date();
@@ -177,6 +186,11 @@ async function sendConfirmation(confirmedGuests) {
   } catch (error) {
     console.error("Erro ao enviar confirmação:", error);
     showNotification(CONFIG.MESSAGES.ERROR, "error");
+  } finally {
+    const styleToRemove = document.getElementById("force-wait-cursor");
+    if (styleToRemove) {
+      styleToRemove.remove();
+    }
   }
 }
 

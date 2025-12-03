@@ -97,6 +97,7 @@ export const listOfGuests = {
     "Pedro Yuri Nogueira",
     "Pamela Castro",
   ],
+  "Micais family": ["Micaias Alves"],
 };
 
 export const RENDER_URL = "https://alice-birthday.onrender.com/confirm";
